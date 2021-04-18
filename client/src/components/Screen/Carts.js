@@ -6,10 +6,10 @@ import Cart_header from "./Carts_component/Cart_header";
 import Progress_bar from "./Carts_component/Progress_bar";
 import Cart_nav from "./Carts_component/Cart_nav";
 import { Link } from "react-router-dom";
-import AppContext from '../context/app-context'
+import AppContext from "../context/app-context";
 
 const Carts = () => {
-  const { cart, setCart} = useContext(AppContext)
+  const { cart, setCart } = useContext(AppContext);
   const cbRef = useRef([]);
   const [products, setProducts] = useState(null);
   let subtotal = 0;
@@ -45,6 +45,11 @@ const Carts = () => {
     }
   };
   useEffect(() => {
+    if (cart.length !== 0) {
+      cart.map(item => {
+        console.log(cbRef.current.find((cb) => cb.id == item.id));
+      });
+    }
     fetch("./products.json")
       .then((res) => res.json())
       .then((data) => {
@@ -183,8 +188,15 @@ const Carts = () => {
             <div>{cart.length} items</div>
             <div>
               Subtotal: $
-              {cart.forEach((item) =>(subtotal += parseFloat(item.quantity * item.variants[0].price))),
-              subtotal.toFixed(2)}
+              {
+                (cart.forEach(
+                  (item) =>
+                    (subtotal += parseFloat(
+                      item.quantity * item.variants[0].price
+                    ))
+                ),
+                subtotal.toFixed(2))
+              }
             </div>
           </h5>
           <h6
@@ -201,7 +213,7 @@ const Carts = () => {
               top: "-3vh",
             }}
           >
-            <Link to='/checkout'>Continue</Link>
+            <Link to="/checkout">Continue</Link>
           </h6>
         </div>
       </div>

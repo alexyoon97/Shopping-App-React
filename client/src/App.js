@@ -5,6 +5,7 @@ import Carts from "./components/Screen/Carts";
 import Checkout from "./components/Screen/Checkout";
 import { HashRouter, Route } from "react-router-dom";
 import AppState from "./components/context/AppState";
+import Shipment from "./components/Screen/shipment";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/checkout">
           <Checkout />
+        </Route>
+        <Route path="/shipment">
+          <Shipment/>
         </Route>
       </HashRouter>
     </AppState>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import "../Screen/Checkout.css";
 import Progress_bar from "./Carts_component/Progress_bar";
 import AppContext from "../context/app-context";
@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 const Checkout = () => {
   const { cart, setCart, user, setUser } = useContext(AppContext);
   let subtotal = 0;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="checkout_container">
       <Progress_bar />
@@ -58,7 +61,7 @@ const Checkout = () => {
           })}
         </div>
         <div className="subtotal">
-          Subtotal:{" "}
+          Subtotal:{" "}$
           {
             (cart.forEach(
               (item) =>
@@ -137,7 +140,7 @@ const Checkout = () => {
             ></input>
           </div>
         </div>
-        <Link className="submit" onClick={() => sendEmail} to="/shipment">
+        <Link className="submit" to="/shipment">
           Continue to Shipping
         </Link>
       </div>

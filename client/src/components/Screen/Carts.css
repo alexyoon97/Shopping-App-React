@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-
-body{
-  overflow-y: hidden;
-}
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
